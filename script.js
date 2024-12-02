@@ -25,14 +25,17 @@ function doGrid(num, w=window.screen.width/20) {
 
 //sequences
 seq.addEventListener('change', () => {
-    if(seq.value == "PI") amount.value = 0
-    if(seq.value == "Look and Say") amount.value = 30
-    if(seq.value == "Fibonacii") amount.value = 5000
-    if(seq.value == "Collatz (3x+1) Sequence") amount.value = Math.round(Math.random()*10000)
-    if(seq.value == "Prime Numbers") amount.value = 50000
+    if(seq.value == "PI π") amount.readOnly = true
+    else amount.readOnly = false
+
+    if(seq.value == "PI π") amount.value = 10000
+    if(seq.value == "Look and Say") amount.value = 38
+    if(seq.value == "Fibonacii Sequence") amount.value = 1500
+    if(seq.value == "Collatz (3x+1) Sequence") amount.value = Math.round(Math.random()*10000000)
+    if(seq.value == "Prime Numbers") amount.value = 100000
     if(seq.value == "Squared Numbers") amount.value = 10000
     if(seq.value == "Cubed Numbers") amount.value = 5000
-    if(seq.value == "Pell Numbers") amount.value = 5000
+    if(seq.value == "Pell Numbers") amount.value = 1000
     if(seq.value == "Thue-Morse Sequence") amount.value = 15
 })
 seq.addEventListener("change", update)
@@ -40,13 +43,13 @@ hue.addEventListener("input", update)
 amount.addEventListener("input", update)
 
 function update() {
-    if(seq.value == "PI") doGrid(new Sequence().pi)
+    if(seq.value == "PI π") doGrid(new Sequence().pi)
     if(seq.value == "Look and Say") doGrid(new Sequence().lookSay(amount.value))
     if(seq.value == "Fibonacii Sequence") doGrid(new Sequence().fibonacii(amount.value))
     if(seq.value == "Prime Numbers") doGrid(new Sequence().prime(amount.value))
     if(seq.value == "Squared Numbers") doGrid(new Sequence().square(amount.value))
     if(seq.value == "Cubed Numbers") doGrid(new Sequence().cube(amount.value))
-    if(seq.value == "Collatz (3x+1) Sequence") doGrid(new Sequence().cube(amount.value))
+    if(seq.value == "Collatz (3x+1) Sequence") doGrid(new Sequence().collatz(amount.value))
     if(seq.value == "Pell Numbers") doGrid(new Sequence().pell(amount.value))
     if(seq.value == "Thue-Morse Sequence") doGrid(new Sequence().thue(amount.value))
 }
@@ -88,7 +91,7 @@ class Sequence {
     }
     prime(n) {
         let output = "235"
-        for(i=7; i<n; i++) {
+        for(let i=7; i<n; i++) {
             let prime = true
             let range = Math.floor(i/2)
             for(let x=2; x<range-1; x++) {
@@ -122,6 +125,10 @@ class Sequence {
                 i++
             }
             output += i
+        }
+        if(output.length < 1000) {
+            amount.value = Math.round(Math.random()*10000000)
+            output = this.collatz(amount.value)
         }
         return output
     }
@@ -209,6 +216,4 @@ setInterval(() => {
     }
 }, 10)
 
-
-
-doGrid(new Sequence().pi)
+update()
