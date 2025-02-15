@@ -1,0 +1,11 @@
+body {overflow-x: hidden;}
+#box {
+    margin: 2vh 0;
+    font-family: monospace;
+}
+p {
+    margin: 0;
+    flex: 0.1;
+    text-align: center;
+    user-select: none;
+}
