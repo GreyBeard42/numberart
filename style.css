@@ -9,3 +9,7 @@ p {
     text-align: center;
     user-select: none;
 }
+select {color: #9adbc6; background: #043022; border-color: #9adbc6;}
+input {font-family: "Beardy"}
+button{background: white; border: none; color: black;}
+#cool{background: #043022; border: 1px solid; color: inherit;}
