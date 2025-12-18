@@ -1,0 +1,15 @@
+{
+  "title": "Number Art",
+  "desc": "Generated art from number sequences",
+
+  "status": "archived",
+  "version": "v1.1",
+
+  "date": "11/30/2024",
+
+  "tags": [
+    "javascript",
+    "tinker",
+    "art"
+  ]
+}
